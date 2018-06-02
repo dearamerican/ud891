@@ -24,15 +24,18 @@
   }
 
   RadioGroup.prototype.handleKeyDown = function(e) {
+    console.log('hello in handleKeyDown')
     switch(e.keyCode) {
 
       case VK_UP:
       case VK_LEFT: {
 
         e.preventDefault();
-
-        // This seems like a good place to do some stuff :)
-
+        if (this.focusedIdx === 0) {
+          this.focusedIdx = this.buttons.length - 1;
+        } else {
+          --this.focusedIdx;
+        }
         break;
 
       }
@@ -41,9 +44,11 @@
       case VK_RIGHT: {
 
         e.preventDefault();
-
-        // This seems like a good place to do some stuff :)
-
+        if (this.focusedIdx === this.buttons.length - 1) {
+          this.focusedIdx = 0;
+        } else {
+          ++this.focusedIdx;
+        }
         break;
       }
 
